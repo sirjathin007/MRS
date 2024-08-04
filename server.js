@@ -9,7 +9,7 @@ const PORT = 3000;
 app.use(bodyParser.json());
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }));
-mongoose.connect('mongodb+srv://jathinaggarwal007:FyJvKVczGJje8sxd@mrs.y2f9oyz.mongodb.net/?retryWrites=true&w=majority&appName=MRS', {
+mongoose.connect('mongodb://localhost:27017/motorShop', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
@@ -116,6 +116,27 @@ app.get('/api/motors/get_all', async (req, res) => {
     }
 });
 
+
+app.get('/api/motors/get_all', async (req, res) => {
+    try {
+        const motors = await Motor.find(); 
+        res.status(200).json(motors); 
+    } catch (err) {
+        res.status(500).json({ error: err.message }); 
+    }
+});
+
+app.get('/api/motors/get_all_motor_rewinidings',async(req,res)=>
+{
+    try{
+        const motorRewindings  = await MotorRewinding.find();
+        res.status(200).json(motorRewindings);
+    }
+    catch(err)
+    {
+        res.status(500).json({ message: 'Error retrieving motor rewindings', error: error.message });
+    }
+})
 
 // Start server
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
