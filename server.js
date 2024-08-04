@@ -9,7 +9,7 @@ const PORT = 3000;
 app.use(bodyParser.json());
 app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }));
-mongoose.connect('mongodb://localhost:27017/motorShop', {
+mongoose.connect('mongodb+srv://jathinaggarwal007:FyJvKVczGJje8sxd@mrs.y2f9oyz.mongodb.net/?retryWrites=true&w=majority&appName=MRS', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 })
